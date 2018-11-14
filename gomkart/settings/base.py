@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'elliot.zoerner@gmail.com'
+EMAIL_HOST_PASSWORD = 'your password'
+EMAIL_PORT = 587
+EMAIL_USER_TLS = True
+DEFAULT_FROM_EMAIL = 'Your Name <you@email.com>'
 
 # Application definition
 

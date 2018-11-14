@@ -20,13 +20,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '18*g#gj&wl59yj$x*%^@^=z4a!rv@t)k#*@rf&n2l0x=dzwp=w'
+SECRET_KEY = os.environ.get("SECRET_KEY", '18*g#gj&wl59yj$x*%^@^=z4a!rv@t)k#*@rf&n2l0x=dzwp=w')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gomkart-api.herokuapp.com', 'gomkart.herokuapp.com', '.gomkart.com']
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'elliot.zoerner@gmail.com'
+EMAIL_HOST_PASSWORD = 'your password' # os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USER_TLS = True
+DEFAULT_FROM_EMAIL = 'Your Name <you@email.com>'
 
 # Application definition
 
@@ -84,6 +90,10 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+# DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
