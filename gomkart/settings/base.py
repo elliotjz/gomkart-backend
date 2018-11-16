@@ -16,6 +16,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'elliot.zoerner@gmail.com'
 EMAIL_HOST_PASSWORD = 'your password' # os.environ.get("EMAIL_HOST_PASSWORD")
@@ -34,7 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     'corsheaders',
+
+    'api',
     'users',
 ]
 
@@ -144,3 +155,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
